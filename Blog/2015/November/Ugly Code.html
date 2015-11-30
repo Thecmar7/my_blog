@@ -1,0 +1,226 @@
+Ugly Code
+November 23, 2015 14:47
+Web Development
+// post
+I have been trying to organize my website a little bit, and now I have it to a good place.  But now I need to start organizing the code a bit more. The PHP code for this blog writer is the worst code I have ever written! It's ugly and all over the place. I used almost no functions and it all just was thrown together in an afternoon. When I look back at it now as I want to add more features to the blog it is the worst. I can't understand most of it. So I am going to in the next couple weeks work on "refactoring" the code so that it smells a bit nicer. 
+
+// code 
+PHP
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Blog</title>
+	<link type="text/css" rel="stylesheet" href="style_sheets/blog_style.css">
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/8.9.1/styles/docco.min.css">
+	<script src="//cdn.jsdelivr.net/highlight.js/8.9.1/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+<body>
+<!-- heading -->
+<div id="dah_page">
+
+<div id="top_part">
+	<h1>Cramer Smith</h1>
+	<p> This is my blog. I use it to practice writing and have a place for my thoughts. Forgive any typos or bad grammar I am not an english major. </p>
+	<nav>
+		<a href="http://web.engr.oregonstate.edu/~smithcr/home.php">Home</a>
+		<a href="http://web.engr.oregonstate.edu/~smithcr/new_web/blog_reader.php">Blog</a>
+		<a href="http://web.engr.oregonstate.edu/~smithcr/new_web/Blog_writer.php">New Post</a>
+	</nav>
+</div>
+
+<div id="dah_articles">
+	<?php
+		//access the file.
+		
+		if ($_GET["year"] != null) {
+			// give a year a month and a title.
+			$Year = $_GET["year"];
+			$Month = $_GET["month"];
+			$title = $_GET["title"];
+			// the path that we are accessing
+			$path = "Blog/" . $Year . "/" . $Month . "/" . $title . ".html";
+			make_blog_post($path);
+		} else {
+			$rec_year = 0;
+			foreach (glob("Blog/*") as $filename) {
+				$checked_year = intval(substr($filename, 5));
+    			if($checked_year > $rec_year) {
+    				$rec_year = $checked_year;
+    			}
+			}
+
+			$rec_month = "noll";
+			foreach (glob("Blog/" . $rec_year . "/*") as $filename) {
+				$checked_month = substr($filename, 10);
+				if (strtotime($checked_month) > strtotime($rec_month)) {
+					$rec_month = $checked_month;
+				}
+			}
+
+			//echo $rec_month . ", " . $rec_year;
+
+			$files = array();
+			foreach (glob("Blog/" . $rec_year . "/" . $rec_month . "/*") as $filename) {
+				$Post = fopen($filename, "r");
+				$data = get_post_data($Post);
+				$files[strtotime("now") - strtotime($data["c_time"])] = $filename; 
+				fclose($filename);
+			}
+			//print_r($files);
+			ksort($files);
+			//print_r($files);
+
+			foreach ($files as $date => $loca) {
+				make_blog_post($loca);
+			}
+		}
+		
+		// creates a blog post out of a given blog FILE POINTER AND FILE LOCATION.	
+		//make_blog_post($path);
+		function make_blog_post($loca) {
+			if (file_exists($loca)) {
+				$Post = fopen($loca, "r");
+				echo "<div class=\"article\">";
+
+				$data = get_post_data($Post);
+					
+				# The title
+				?>
+					<h1 class="post_title"> <?=$data['title']?> </h1>
+					<hr> 
+				<?php
+				# meat of the post this will create the basic post 
+				?>
+					<div class=\"post_meat\">
+				<?php
+				while (($line = fgets($Post)) !== false) {
+					if (strcmp(trim($line), "") === 0) {
+						# do nothing if there is no words on the line
+					} else if (strcmp(trim($line), "// code") === 0) {
+						# this is where the code will happen!
+						$type_of_code = trim(fgets($Post));
+						if ($type_of_code == "") {
+							$type_of_code = "html";
+						}
+						?>
+						<pre><code class="<?=$type_of_code?>">
+						<?php
+						  					// start of code
+						$lopin = true;
+						while ($lopin && ($code = fgets($Post)) !== false) {
+							if (strcmp(trim($code), "// code end") === 0) {
+								$lopin = false;
+							} else {
+								echo htmlspecialchars($code);
+							}
+						}
+						?>
+							</code></pre>									
+						<?php // end of code
+					} else {
+						// if its not a code line just print out the normal line as a paragraph
+					?>
+						<p>
+							<?=$line?>
+						</p> 
+					<?php
+					}
+				} 
+				?>
+					</div>
+					<div class="topic_all">
+						<h2 class="topic_heading">Topics: </h2>
+						<ul class="topics">
+				<?php
+				for ($i = 0; $i < count($data['topics']); ++$i) {
+					?>
+		        		<span class="pipe">|</span>
+		        		<li class="topic"><?=$data['topics'][$i]?></li>
+		        	<?php
+		    	}
+		    	?>	
+		    			</ul>
+		    		</div>
+					</br>
+				
+					<div class="shame">
+						Created: <?=$data['c_time']?> </br>
+						Last modified: <?=date("F d, Y H:i",filemtime($loca))?>
+					</div>
+				<?php
+
+				fclose($loca);
+				echo "</div>";
+			}
+		}
+
+		// Returns an array of data from the a given file pointer
+		// 	 title
+		//	 c_time: created time of the file
+		//   topics: an array of the topics that are in the blog post
+		// POST: Moves the file pointer down to the post, past the meta data.
+		#metadata array,
+		#line 1 		:is the title.
+		#line 2 		:is the Creation date cause UNIX don't save the file creation date.
+		#line 3 and up  :is the topics of the blog post.
+
+		# The first parts are put in as just elements of the array but the topics are put in as 
+		# another array so the data array is a multi dementional array.
+		function get_post_data($Post) {
+			$data = array('title' => fgets($Post), 'c_time' => fgets($Post), 'topics' => array(fgets($Post)));
+			$lopin = true;
+			while ($lopin && ($topic = fgets($Post)) !== false) {
+				if (strcmp(trim($topic), "") === 0) {
+					# do nothing
+				} else if (strcmp(trim($topic), "// post") !== 0) {		
+					$data['topics'][] = $topic;
+				} else {
+					$lopin = false;
+				}
+			}
+			return $data;
+		}
+
+	?>
+	</div>
+
+	<!-- sidebar -->
+	<div id="side_bar">
+		<img src="http://web.engr.oregonstate.edu/~smithcr/new_web/pictures/casual.jpg">
+
+		<p>
+			Hello world! My name is Cramer Smith, and I am currently studying Computer Science at Oregon State University with a focus in web and mobile developement.
+		</p>
+
+		<?php
+			foreach (glob("Blog/20??") as $year) {
+				echo substr($year, 5) . "</br>";
+				foreach (glob($year . "/*") as $month) {
+					echo "<span class=\"tabin\" ></span>" . substr($month, 10) . "</br>";
+					foreach (glob($month . "/*.html") as $post) {
+						$p_year = substr(strrchr($year, "/"), 1);
+						$p_month = substr(strrchr($month, "/"), 1);
+						$title = substr(strrchr($post, "/"), 1, -5);
+						?>
+						<div>
+							<span class="tabin"></span><span class="tabin"></span>
+							<a href="http://web.engr.oregonstate.edu/~smithcr/new_web/blog_reader.php?year=<?=$p_year?>&month=<?=$p_month?>&title=<?=$title?>"><?=$title?></a>
+						</div>
+						<?php
+					}
+				}
+
+			} 
+		?>
+	</div> <!-- end of side bar -->
+</div>
+
+</body>
+</html>
+// code end
+
+That is the beast in it's current state. I put it here just in case I royally screw it up. 
+		

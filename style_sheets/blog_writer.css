@@ -1,0 +1,16 @@
+/*blog_writer.css*/
+body {
+	width: 860px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.formatting {
+	float: right;
+	width: 180px;
+}
+
+label {
+	font-weight: bold;
+	text-decoration: underline;
+}

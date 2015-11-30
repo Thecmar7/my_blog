@@ -1,0 +1,11 @@
+I Thought I Was Smart
+October 26, 2015 14:03
+C
+
+// post
+
+		
+	Ok so I had this idea and I thought it was smart and creative. So I have this assignment that I we make a little story adventure using files that will hold the room and the descriptions.  So there are 10 possible rooms but only 7 of the rooms can be chosen for the maze. So to make sure the rooms weren't chosen twice I decided to use a form of binary. Looking back after 3 day I realize that this is a very poor way to execute this kind of system, but at the time I thought I was being clever. 
+Here is the quick run down of the idea:
+<ul>The way I use the used_name variable is kinda weird, but I wanted a way to check if a name in the array of names had been used or not without checking the files names and doing a string compare. So I thought of this way of a kind of binary. We start with the number 21111111111. Ten 1s, and a 1 for each possible file meaning the file name is still avaliable. Once we use the file name  a 0 is put in that position. for an example lets use 2111 we are choosing 3 random numbers 3 is chosen compare (2111 % 1000 = 111) == (2111 % 100 = 11) false: that number works 2111 - 100 = 2011 3 is chosen again compare (2011 % 1000 = 11) == (2011 % 100 = 11) true: try again </ul>
+I hope that you could read that. Basically I was using a unsigned long (21111111111) and make it so you would delete a 1 at the position of a room that was already chosen from an array of rooms. But now I am just thinking I could just use actual binary starting at 2^10 and then subtracting 2^room_chosen. This will be nicer to deal with than with longs. Longs are a weird data type. 

@@ -1,0 +1,69 @@
+Ruby and Rails
+November 24, 2015 20:08
+Web Developement
+Ruby On Rails
+// post
+Ok I need to remember this stuff. 
+
+Ruby on rails is really cool and fun to use and I want to get to know how to use it but right now I don't understand any of it. Currently I am running El Capitan on my Mac. I found <a href="https://gorails.com/setup/osx/10.11-el-capitan">this</a>  really helpful website that showed how to get the recent version of the Ruby and Ruby on Rails. Ok now that I have the rails and the ruby. I want to remember how to set it all up and make the applications. 
+
+I also need to remember the basics of the model view controller scheme of Ruby on Rails. I have it all on <a href="http://web.engr.oregonstate.edu/~smithcr/cs_290/How-to-Guide/page.html">that CS 290 assignment</a> that I did this summer. It is very bare bones so I don't trust it too much but it is a good refresher. 
+
+So I generated a controller. 
+
+// code
+
+	$ rails generate controller pages
+
+// code end
+
+This generated a controller in the file <strong>app/controllers/pages_controller.rb</strong> and in the file there was code. I defined a function called home. 
+
+// code
+ruby
+
+class PagesController < ApplicationController
+
+	def home
+	end
+	
+end
+
+// code end
+
+So now that I have the home function defined within the page controller I need a thing to call that controller. Go to the <strong>routes.rb</strong> and add the code:
+
+// code
+ruby
+	
+	get 'welcome' => 'pages#home'
+	
+// code end
+
+This makes it so that the user when they put in 'welcome' on the end of the URL the page will go to the pages controller and call the home function, the home function is empty right now so it just directs the page to a file. That file can be found in the <strong>views/pages</strong> file. In that file I added a home.html.erb file:
+
+// code
+HTML
+
+<div class="main">
+  <div class="container">
+    <h1>Hello my name is Cramer</h1>
+    <p>I make Rails apps.</p>
+  </div>
+</div>
+
+// code end
+
+And bam! Start up the rails server by running 
+// code
+
+	$ rails start
+
+// code end
+
+and go the the localhost:300 and you have a nice little webpage. 
+
+That seems like a lot of work for a thing I could have done in about a minute with regular web programming, but I have heard good things about ruby on rails so I think I will give it more of a try. Hopefully it usefulness with outweigh its trivialness.. is that a word. 
+
+Also Should say I am just learning this with the Ruby on Rails tutorial from codecademy, and some other online resources. 
+

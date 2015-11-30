@@ -1,0 +1,152 @@
+body {
+	background-color: #D9F1F1;
+	width: 1055px;
+	height: 1000px;
+	margin-right: auto;
+	margin-left: auto;
+	padding-bottom: 40px;
+}
+
+
+
+#dah_articles {
+	float: left;
+	width: 775px;
+}
+ /* ************ The article ************* */
+.article {
+	margin: 12px;
+	margin-left: 0px;
+	margin-right: 0px;
+	width: 770px;
+	padding: 15px;
+	background-color: white;
+	border-radius: 12px;
+    border: 1px solid #C0C0C0;
+    padding: 20px;  
+    float: left;
+}
+
+/* article */
+.post_title {
+	font-family: "Palatino Linotype";
+	margin-top: 2px;
+}
+
+.post_meat {
+	font-family: helvetica;
+	font-size: 11pt;
+	width: 95%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/*creation time and mod time */
+.shame {
+	font-size: 9pt;
+	text-align: right;
+}
+
+/* TOPIC */
+.topic_heading, .topics {
+	margin-top: 3px;
+	font-size: 12pt;
+	float: left;
+	padding-left: 2px;
+}
+
+.pipe {
+	font-weight: bold;
+	font-size: 14pt;
+	float: left;
+	margin-left: 3px;
+}
+
+.topics > li {
+	list-style: none;
+	float: left;
+	padding-left: 5px;
+	font-family: sans-serif;
+}
+
+.topic {
+	margin-top: 1px;
+}
+
+/* ^^^^^^^^^^^^^^ The article ^^^^^^^^^^^^^ */
+
+/* top part */
+#top_part {
+	padding-left: 12px;
+	width: 1041px;
+	height: 160px;
+	background-color: white;
+	border-radius: 10px;
+	border: 1px solid #C0C0C0;
+	background-image: url("http://web.engr.oregonstate.edu/~smithcr/new_web/pictures/Screen%20Shot%202014-11-19%20at%2011.56.49%20PM.png");
+	background-size: 100%;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#top_part > h1 {
+	margin-top: 10px;
+	margin-bottom: -5px;
+	font-family: "Courier New";
+	font-size: 38pt;
+	font-weight: 100;
+}
+
+#top_part > p {
+	width: 90%;
+}
+
+#top_part > nav > a {
+	margin-left: 7px;
+	font-size: 14pt;
+}
+
+/* side bar */
+#side_bar {
+	font-family: helvetica;
+	margin-top: 13px;
+	width: 223px;
+	float: right;
+	border-radius: 10px;
+	border: 1px solid #C0C0C0;
+	background-color: white;
+	padding: 3px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#side_bar > img {
+	width: 180px;
+	height: 180px;
+	border-radius: 5px;
+	margin-left: 4px;
+}
+
+#side_bar > p {
+	font-family: monospace;
+	font-size: 10pt;
+}
+
+#side_bar > div > a {
+	font-size: 11pt;
+	color: #3366FF;
+}
+
+#side_bar > div > a:hover {
+	color: #33CCCC;
+	text-decoration: none;
+}
+
+#side_bar > div > a:visited {
+	color: none;
+}
+	
+
+.tabin {
+	margin-left: 10px;
+}
