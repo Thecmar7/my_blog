@@ -1,5 +1,6 @@
 <?php
 	include 'blog_common.php';
+	include_once("analyticstracking.php");
 ?>
 
 <!DOCTYPE html>

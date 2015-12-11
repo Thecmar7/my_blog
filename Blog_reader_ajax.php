@@ -10,6 +10,8 @@
 
 				$year = date("Y");
 				$month = date("F");
+				mkdir("Blog/$year/$month/", 0777, true);
+
 				$date = date("F d, Y H:i");
 				$location = "Blog/$year/$month/$title.html";
 				$file = fopen($location, "w");
