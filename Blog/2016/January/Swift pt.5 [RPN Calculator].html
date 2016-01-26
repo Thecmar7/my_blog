@@ -1,0 +1,102 @@
+Swift pt.5 [RPN Calculator]
+January 25, 2016 23:57
+Swift
+Programming Language
+// post
+OK! The moment you have all been waiting for! The reverse polish notation calculator. So I need to explain some stuff about how a reverse polish notation works. So first there is a stack. A stack is an abstract data type (ADT) that works like a stack of plates works. The last plate that was put on the stack is the first thing taken off the stack. In a reverse polish notation calculator you use a stack to store values. An equation for a reverse polish notation looks like "2 2 +" instead of "2 + 2". This is foreign for most people (with exception of the Polish that prefer walking backward, pa-da-ts-s-s-h). But using a stack makes it pretty easy. 
+
+So looking at the example "2 2 +" you have a stack that is empty (No plates on it). Then you  read the first part of the equation and see "2" and put that on the stack (one plate). Then the same with the other "2" (two plates are on the stack). Now you see a plus and you need to numbers from the stack you remove the first off the stack and add it to the second number on the stack. Once you have the sum you put it on the stack and once you only have one item on the stack then you know that you are done with the equation.
+
+So to simulate a stack I didn't implement a great stack ADT or anything like I should have. I just made an array and kept track of the top. 
+
+Now that you understand the RPN and the Stack. I will show you some code! 
+
+// code 
+Swift
+
+/* *******************************************************************************************************************/
+func revpolishcalc(polish:String) -> (num: Int, error: String) {
+//      Pre:  Takes in a string of a polish notation equation. The equation must be a in the correct formula, if not
+//            the function will return a 0 and an error
+//      Post: It returns an Integer that is the result of the equation and an empty string.
+/* ********************************************************************************************************************/
+    // seperate the string into an array
+    var polishArr = polish.componentsSeparatedByString(" ")
+    var stack = [Int?]()
+    var size = 0;
+    
+    // loop through the equation
+    for var i = 0; i < polishArr.count; i++ {
+        
+        // up all the numbers on the stack
+        if (Int(polishArr[i]) != nil) {
+            if (stack.count <= size) {
+                stack.append(Int(polishArr[i]))
+                size++
+            } else {
+                size++
+                stack[size - 1] = Int(polishArr[i])
+            }
+        
+        // if it encounters a operator take two off the stack and then put one on the stack
+        } else {
+            
+            // all of these operators take two operators so if there is not two operators then it is wrong
+            if (size < 2) {
+                return (0, "error: not good formatting: not enough operands")
+            }
+            
+            // the different operators
+            if (polishArr[i] == "+") {
+                stack[size - 2] = stack[size - 1]! + stack[size - 2]!
+            } else if (polishArr[i] == "-") {
+                stack[size - 2] = stack[size - 2]! - stack[size - 1]!
+            } else if (polishArr[i] == "*") {
+                stack[size - 2] = stack[size - 1]! * stack[size - 2]!
+            } else if (polishArr[i] == "/") {
+                stack[size - 2] = stack[size - 2]! / stack[size - 1]!
+            } else if (polishArr[i] == "^") {
+                let temp = stack[size - 2]!
+                if (stack[size - 1] == 0) {
+                    stack[size - 2] = 1
+                } else {
+                    for var w = 1; w < stack[size - 1]!; w++ {
+                        stack[size - 2] = stack[size - 2]! * temp
+                    }
+                }
+            } else {
+                return (0, "error: not good operator")
+            }
+            size--
+        }
+    }
+    
+    // a proper reverse polish notation should end up with only one thing in the stack
+    if (size != 1) {
+        return (0, "error: not good formatting: too many operands")
+    } else {
+        return (stack[0]!, "")
+    }
+}
+
+
+// code end 
+
+BAM! That's it! That is the reverse polish notation calculator. It's all in one function. I am not super happy with it, but it works. This is how you would call this function.
+
+// code
+Swift
+
+var returnnum = revpolishcalc("22 4 +")
+if (returnnum.error == "") {
+    print(returnnum.num)
+} else {
+    print(returnnum.error)
+}
+
+// code end
+
+That is all there is. Honestly I wrote this code awhile ago. I want to move on to bigger and better things. I need to work on my dynamic programming skills. 
+
+So next time will be a look at some dynamic programming problems and how to approach solving them. Still in Swift of course. 
+	

@@ -1,0 +1,95 @@
+Swift Pt. 3 [Functions]
+December 19, 2015 15:48
+Swift
+Computer Science
+Programming Language
+// post
+We are getting to the juicy stuff. This is when you truly learn the abilities of a language and how you can use it to make very complex things that are well designed and easy to use. <a href="https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Functions.html#//apple_ref/doc/uid/TP40014097-CH10-ID158">Functions</a> are (insert pun) fun! So what are the basics of functions? Well functions make it so you can take a chunk of code and assign it to a function that you can then call to have it execute that chunk of code without having to rewrite the code again. Making functions is easy enough. Lets make on that prints out "hello world" three times, super simple.
+
+// code
+swift
+// function initialization
+func helloWorld() {
+	print("hello world")
+	print("hello world")
+	print("hello world")
+} 
+
+// function call
+helloWorld()
+helloWorld()
+// code end
+
+This is silly. This would print out "hello world" six times cause math and multiplication. Now that is all well and good, but really it is not that useful. To make our functions more useful we need to add parameters. If you don't know what a parameter is then just look at the print function. It is a function that takes one parameter. That parameter is the String (or variable or concatenation) that is going to be outputted to the console. That parameter can be changed and then it is used by the function as a variable. Lets try making some functions with parameters.
+
+// code 
+swift
+// A function with one parameter
+
+/********************************************************************************************************
+ * helloNTimes(n: Int)
+ *	This function takes in a number and will print out the string "hello" the amount of times equal to the number
+ *	that is given
+ ********************************************************************************************************/
+func helloNTimes(n: Int) {
+	for var i = 0; i < n; i++ {
+		print("hello");
+	}
+}
+
+helloNTimes(9)		// will print out hello nine times
+
+// Now a function with multiple parameters 
+/********************************************************************************************************
+ * comparator(num1: Int, num2: Int)
+ *	This function takes in two numbers and then compares them it will print out the greater number of the two, or 
+ *	if the numbers are equal it will print out 'equal'
+ ********************************************************************************************************/
+func comparator(num1: Int, num2: Int) {
+	if (num1 > num2) {
+		print(num1)
+	} else if (num1 == num2) {
+		print("equal")
+	} else {
+		print(num2)
+	}
+}
+
+// this call with multiple parameters is a little funky looking but that is how it works. all the parameters after the first 
+// have to have their *variable name*: *value*
+comparator(1, num2: 3)
+// code end
+
+The comment blocks are something that I like to do before every function that I write this makes it easier when you come back and look at them later. You can use these comments as a small documentation for your code. There is a more formal way to write these comment blocks and it can be different for every language. I try to just make sure that if I were to read the comment I know what the function takes as parameters, what the parameters need to be so that I don't get an error, what it prints out, and what it returns. I think that covers everything, but you might not know what a return is. Well that's next and they are so awesome once you understand them. 
+
+I remember when I first started learning how to program and it was a super fast paced class and I was trying as hard as I could and I was up until three in the morning most nights working on the homework, and trying to understand the concepts and return statements kept me up all night. They are super simple, but for some reason I just couldn't understand the concept. 
+
+The way I finally got how return statements it with some stupid ball analogy. I image there are two ledges one above the other, with two children, one child on each ledge. On the bottom ledge is your main child, he takes a ball, or a parameter, and throws it up to the child, or the function, on the ledge above. The child above catches the ball, and depending on what game the boy on the ledge is playing he will return a ball to the child bellow. I hope that made sense. I completely understand it is not a perfect analogy, but it is how I got it when I was first learning. 
+
+So in more realistic terms a function with a return statement has output, similar to a function with parameters that has input. The output is given back to the place that the function is called. Now Swift is awesome and can return multiple variables. Here is some examples of function with return statements.
+
+// code 
+swift
+func seven() -> Int {	// it is necessary to have the type of the return statement specified with the -> *type*
+	return 7
+}
+
+var num: Int = seven()	// see the seven function returns the number 7 and that will be placed in the variable num
+
+func sevenAndHello() -> (seven: Int, hello: String) {
+	return (7, "hello")
+}
+
+var thang = sevenAndHello()
+print(thang.seven)
+print(thang.hello)
+
+// code end 
+
+The ability to return more than one variable is still freaking me out, it's so cool. 
+
+Anyway there are the very basics of Swift functions, we are really getting somewhere. This is awesome, so I have actually left that one guys blog and now I am just using the <a href="https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097-CH3-ID0">Apple Swift 2.1 documentation</a>. It is very nice and super friendly compared to other documentation that I have read. 
+
+I hope that next time we might be getting into making some kind of application. I have to come up with an idea first.
+
+

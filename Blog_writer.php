@@ -1,5 +1,5 @@
 <?php
-	include 'blog_common.php';
+	include '../php/blog_common.php';
 	include_once("analyticstracking.php");
 ?>
 

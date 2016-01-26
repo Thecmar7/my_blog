@@ -1,62 +1,68 @@
 <?php
-	include 'blog_common.php';
+	include('../php/blog_common.php');
+	include('../php/common.php');
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Blog</title>
-	<link type="text/css" rel="stylesheet" href="style_sheets/blog_style.css">
-	<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/8.9.1/styles/docco.min.css">
+	<link type="text/css" rel="stylesheet" href="../style_sheets/common.css" />
+	<link type="text/css" rel="stylesheet" href="style_sheets/blog_style.css"/>
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/8.9.1/styles/docco.min.css"/>
+	
 	<script src="//cdn.jsdelivr.net/highlight.js/8.9.1/highlight.min.js"></script>
+	<script src="../Javascript/home.js"></script>
 	<script>
 		hljs.initHighlightingOnLoad();
-		hljs.configure({tabReplace: '    '});
+		hljs.configure({tabReplace: '  '});
 	</script>
 
 </head>
 
 <body>
 	<!-- heading -->
+	<?php
+	$links = array(
+			"Home" => "http://web.engr.oregonstate.edu/~smithcr/php/home.php",
+			"Blog" => "http://web.engr.oregonstate.edu/~smithcr/new_web/blog_reader.php",
+			"New Post" => "http://web.engr.oregonstate.edu/~smithcr/new_web/Blog_writer.php"
+			);
+
+		$desc = "This is my blog. I use it to practice writing and have a place for my thoughts. Forgive any typos or bad grammar I am not an english major.";
+
+		top_part($links, $desc);
+	?>
 	<div id="dah_page">
 
-	<div id="top_part">
-		<h1>Cramer Smith</h1>
-		<p> This is my blog. I use it to practice writing and have a place for my thoughts. Forgive any typos or bad grammar I am not an english major. </p>
-		<nav>
-			<a href="http://web.engr.oregonstate.edu/~smithcr/home.php">Home</a>
-			<a href="http://web.engr.oregonstate.edu/~smithcr/new_web/blog_reader.php">Blog</a>
-			<a href="http://web.engr.oregonstate.edu/~smithcr/new_web/Blog_writer.php">New Post</a>
-		</nav>
-	</div>
 
-	<div id="dah_articles">
-		<?php
-			//access the file.
-			
-			if ($_GET["year"] != null) {		
-				$Year = $_GET["year"];			// give a year a month and a title.
-				$Month = $_GET["month"];		// the path that we are accessing
-				$title = $_GET["title"];		// the title.
-				$path = "Blog/" . $Year . "/" . $Month . "/" . $title . ".html";
-				make_blog_post($path);
-			} else if ($_GET["topic"] != null) {
-				$topicked_posts = get_posts_by_topic($_GET["topic"]);
-				$sorted_topic_posts = sort_posts_by_date($topicked_posts);
-				foreach ($sorted_topic_posts as $post) {
-					make_blog_post($post);
-				}
-			} else {
-				$all_posts = glob("Blog/20??/*/*.html");
-				$all_posts_sorted = sort_posts_by_date($all_posts);
-				$count = 0;
-				foreach ($all_posts_sorted as $post) {
-					make_blog_post($post);
-					$count++;
-					if ($count >= 20) {
-						break;
-					}
+	<?php
+		
+	
+		//access the file.	
+		if ($_GET["year"] != null) {		
+			$Year = $_GET["year"];			// give a year a month and a title.
+			$Month = $_GET["month"];		// the path that we are accessing
+			$title = $_GET["title"];		// the title.
+			$path = "Blog/" . $Year . "/" . $Month . "/" . $title . ".html";
+			make_blog_post($path);
+		} else if ($_GET["topic"] != null) {
+			$topicked_posts = get_posts_by_topic($_GET["topic"]);
+			$sorted_topic_posts = sort_posts_by_date($topicked_posts);
+			foreach ($sorted_topic_posts as $post) {
+				make_blog_post($post);
+			}
+		} else {
+			$all_posts = glob("Blog/20??/*/*.html");
+			$all_posts_sorted = sort_posts_by_date($all_posts);
+			$count = 0;
+			foreach ($all_posts_sorted as $post) {
+				make_blog_post($post);
+				$count++;
+				if ($count >= 10) {
+					break;
 				}
 			}
+		}
 
 		?>
 	</div>

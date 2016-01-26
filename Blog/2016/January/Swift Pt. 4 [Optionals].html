@@ -1,0 +1,83 @@
+Swift Pt. 4 [Optionals]
+January 23, 2016 13:27
+Swift
+Programming Language
+// post
+I am sorry. I have failed all of my many readers. I missed kind of a big thing when I was going over Variables in <a href="http://web.engr.oregonstate.edu/~smithcr/new_web/blog_reader.php?year=2015&month=December&title=Swift%20Pt.%201"> Swift Pt. 1 </a>. I am sorry. I forgot to go over, the very important, optionals and the even more important arrays. But they are weird and honestly I still don't completely understand them, but that us why we are going through this we are looking at the Swift language and trying to understand it. 
+
+So variables are used to save values. They can be change and set and all this stuff, but what if you want it to be nothing? You had a variable you have used it and it was great. But now you realize that you don't want it to be equal to anything anymore. Now if you were using normal variables those cannot be set to nothing then have to be something, but optionals don't play by those rules. Optionals have options. An optional variable can be equal to nil, or a value. Let me show you what I mean. 
+
+// code 
+swift
+
+import UIKit
+
+var optionalNumber: Int? = 3
+optionalNumber = nil
+
+// code end
+
+BAM! Crazy blowing your mind! You notice what is different from this variable initialization and the usual variable initialization? Can you see the difference? It's the question mark. That question mark makes the optionalNumber variable an optional variable! so It will not give me an error when I set it to nil. 
+
+You are probably still wondering, "when would this ever be useful?" Well I will demonstrate some useful things you can do with optional checking.
+
+// code
+Swift
+
+import UIKit 
+
+var optionalNumber: Int? = 3
+optionalNumber = nil
+
+if let checking = optionalNumber {
+    print("ok")
+} else {
+    print("not ok")
+}
+
+// code end 
+
+What do you think this does? This is a special way of checking if a variable is nil or not. See in this code I am trying to set the checking constant to an optional variable that is set to be nil. Trying to set a variable to nil, in essence returns, false.
+If the optional number was set to a number then this if statement would see true and then print out ok, but trying to set a variable to nil that is not an optional variable is not ok. 
+
+You might still be thinking how is this useful? Why would I use this? Well lets look at another example. 
+
+// code 
+swift
+
+var languageLearned: String = "Hello"
+var languageLearnedNum: Int? = Int(languageLearned)
+
+if var langCheck = languageLearnedNum {
+    print(languageLearnedNum)
+} else {
+    print ("languageLearned is not a number")
+}
+
+// code end
+
+In the above example you have a string on line one. Then in the next line I try and set an optional integer variable to an integer case of the string "Hello." Now when you do this to a string "9" this would convert it easily to the integer 9. But since "Hello" is not a number it will set the languageLearnedNum to nil. When it goes through the check it will see that, and prying that languageLearned is not a number. 
+
+That's optionals. Now for arrays. They are cool and used all over in computer science. It is basically just a bunch of variables in a line. To use an analogy think about a list. It has a number of things or values and you can see all the different things by going to the number that the value is at. Lets look at a simple example. 
+
+// code 
+swift
+
+var numberlist = [Int]()
+numberlist.append(1)
+numberlist.append(2)
+numberlist[0] = 3
+numberlist
+
+var threeDoubles = [Double](count: 3, repeatedValue: 0.0)
+print(threeDoubles)
+
+var shoppingList: [String] = ["Eggs", "Milk"]
+print(shoppingList)
+
+var list = [1, "hi"]
+print(list)
+ 
+// code end
+
+Whoa! That was a lot of code, but it is just four examples of how arrays are initialized and a little how they work in Swift. 

@@ -1,0 +1,160 @@
+Swift Pt. 2
+December 18, 2015 20:34
+Swift
+Computer Science
+// post
+So Oregon State University's Engineering School is doing some maintenance on their servers, so I can no longer access my the server unless it is through terminal. I really want to improve my blog but I don't want to use Vim to do it. I mean I could do the edits in Vim, but that would take a great deal more time then I really want to spend. That being said the blog will not be updated anytime soon. I was hoping to add an 'edit' option and a 'drafts' ability to the blog, but now I can't. So I guess I will do that when I get back to OSU. Anyway back to Swift.  
+
+<h3>In This Post</h3><ul><li>The Print Function</li><li>Loops</li></ul>
+
+<h3>The Print Function</h3> The print function is the a very basic way of outputting information to the standard output of a console window. Which in Xcode 7 the console can be found in the Swift playground by clicking on the upward arrow in the box in the bottom left corner of the playground editor border. Clicking on that arrow will bring up the "Debug area" this is the console. To hide the console just press the (now) downward facing arrow that is on the left side of the bar that separates the editing area and the console. 
+
+Now that we can open the console lets put something there. We can do this with the aforementioned print() function. It is pretty simple. 
+
+// code 
+swift 
+
+import UIKit 
+
+var example_of_printing: String = "This will be outputted in the console"
+
+print(example_of_printing)
+
+// code end
+
+And on the console:
+
+// code
+
+This will be outputted in the console
+
+// code end
+
+Now that is how you output an variable.
+
+// code 
+swift
+
+import UIKit
+
+var num = 4
+var boolean = true
+var dec = 4.3
+
+print(num)
+print(boolean)
+print(dec)
+
+// code end
+
+And on the console will appear:
+
+// code 
+
+4
+true
+4.3
+
+// code end
+
+Super easy, but if you want to concatenate a variable within a string then that will take some special syntax within the print statement to make it work the way you expect it to. If you want to add a variable in a string you need to do a sort of escape on the variable. 
+
+// code 
+swift
+
+import UIKit 
+
+var num = 3
+var boolean = false
+var dec = 0.3
+
+// I am proud of how clever I am :) 
+print("Printing variables is never \(boolean) it takes \(num) extra characters and about \(dec) seconds to do")
+
+// code end
+
+The console output 
+
+// code 
+
+printing variables is never false it takes 3 extra characters and about 0.3 seconds to do
+
+// code end 
+
+Easy as 1, 2, 3, like as simple as do, ray, me. So pretty much you love Swift.
+
+<h3>Loops</h3> Loops are one of the best things in any language. making it so the programmer doesn't have to repeat himself (or herself) a hundred times. So there are several basic types of loops in the swift language and those are <ul><li>While</li><li>Repeat While</li><li>For</li><li>For In</li></ul> <a href="https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/ControlFlow.html">source</a>
+
+So lets look at some simple examples of each, starting with the while loop.
+
+// code 
+swift
+ 
+import UIKit
+
+var num1 = 3
+var num2 = 19
+
+while(num1 <= num2) {
+	print("num1: \(num1)")
+ 	num1 =  num1 + 3;
+}
+
+// code end
+
+Brain puzzler! How many times does it print, and what is the value of num1 once the program exits the loop? So it gets out at of the loop once num1 is greater than or equal to num2 which is 19. So num1 starts at 3 and then it goes up by 3 every time so it would get to 18 then once it gets to 21 it would leave the loop. So 3, 6, 9, 12, 15, 18, 21 so it would print 6 times cause it won't print out the 21. That seems obvious now that I think about it... I always hated those questions on the intro to CS classes.
+
+The basics of a while loops is that it runs until the statement within the while loop is false. 
+
+Now lets look at a variation of the while loop. The repeat while loop.
+
+// code 
+swift
+
+import UIKit
+
+var num1 = 3
+var num2 = 19
+
+repeat {
+	print("num1: \(num1)")
+ 	num1 =  num1 + 3;	
+} while (num1 < num2)
+
+// code end
+
+Now this is  basically the same loop except the it is guaranteed to run at least one time cause this checks it at the end of the loop rather than at the beginning. This is useful if you are getting user input.
+
+Now I have been somewhat using while loops in the place of for loops, for loops are more for the iterating a section of code a set number of times and while loops are more for checking a status change during the progress of the program. 
+
+// code 
+swift
+
+import UIKit
+
+for var i = 0; i < 10; i++ {
+	print(i)
+}
+
+// code end
+
+This will print out the numbers 0 through 9. A for loop has a variable that is set, a boolean statement that is checked, and a incrementing statement that will increment the variable.
+
+Then we have the variation of the for loop the for-in loop. The for in loop preforms a statement for each item in a sequence.
+
+// code 
+swift
+
+import UIKit
+
+for index in 1...9 {
+	print(index)
+}
+
+// code end
+
+This will print out the numbers 1 through 9, so this is interesting. It is inclusive I did not expect that. 
+
+So those are loops if you are repeating a lot of code then you can do a loop and save yourself some typing. 
+
+Well that is the end of swift part 2, I actually have another date! 

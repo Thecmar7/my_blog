@@ -1,0 +1,114 @@
+Swift Pt. 1
+December 16, 2015 20:24
+Swift
+Programming Language
+// post
+I have decided to put in a bigger effort into learning Swift. I have heard it is pretty easy, and I want to get more into mobile app development. Ok so the main resource that I am going to use so far is <a href="http://www.raywenderlich.com/114148/learn-to-code-ios-apps-with-swift-tutorial-1-welcome-to-programming">this blog by Brian Moakley</a>. So far it looks nice and thorough and well done. These post will be not as nice as his and most of my post will just be a copy of what his are saying so if you want to learn swift go look at his blog. My blog is for my own remembrance and reference, but if I happen to help someone else then thats awesome. So here we go! 
+
+So lets start with the basics of any language. The variables. There are four different types of variables.<ul><li><strong>Bool:</strong> var true_or_false: Bool = true </li><li><strong>String:</strong> var str:String = "This is a String" </li><li><strong>Int:</strong> var a_counting_number: Int = 1993</li><li><strong>Double:</strong> var number_with_a_decimal: Double = 3.14159</li></ul> The initialization of variable in swift is var *name_of_variable*: *Type* = *data_in_variable*. To change the value of variables you just need to *variable* = *value*. Here is an example of setting a changing the variables in swift.
+
+// code
+swift
+
+import UIKit 				// a bunch of code written by some people at Apple 
+
+// initializing variables
+var str: String = "hello reader"
+var am_i_awesome: Bool = true
+var birth_year: Int = 1993
+var pi: Double = 3.14159
+
+
+// changing the variables values
+str = "hi"					// I am a man of few words in reality
+am_i_awesome = false 		// this is still true, I am only changing it for the sake of the example
+birth_year = 2016			// I don't know why I chose such constant numbers
+pi = 3.14					// because rounding
+
+// code end
+
+
+So that was some Swift code making variables and changing there values, but what if we want variables that can't change. That is when we use the <strong>let</strong> variable declaration. This makes the variable a constant, and constants cannot be changed. 
+
+// code 
+swift
+
+import UIKit 				// a bunch of code written by some people at Apple 
+
+// a constant initialization
+let unchanging: String = "cannot be changed"
+let myFavoriteNumber = 7 
+
+// unchanging = "poop" // This will give you an error
+// myFavoriteNumber = 8 // Can't do this either 
+
+// code end
+
+Well all these things type castings stuff is very silly. It can be much easier than that. It is called inferred typing. This just takes your variables and kind of guesses what types the variables are. This is pretty awesome. 
+
+// code 
+swift
+
+import UIKit				// a bunch of code written by some people at Apple 
+
+// initializing variables with inferred typecasting
+var aNumber = 20
+var aString = "String"
+var aBoolean = true
+var aDecimal = 1.234
+
+// code end
+
+That is how easy it is. That makes the types for the variables cause computers are smart.
+
+We can now compare the numbers and values. Pretty much just using the eight standard comparators. Is it eight? That seems like a lot...
+
+// code 
+swift
+
+import UIKit 				// a bunch of code written by some people at Apple
+
+var numOne = 1
+var numTwo = 2
+var numThree = 3
+var numFour = 3
+
+numOne < numTwo 		// true           	1
+numOne <= numTwo		// true           	2
+numOne > 2				// false		3
+numOne >= 1				// true		4
+numTwo == 2				// true		5
+numThree == 2			// false
+numThree != 2			// true		6
+(numFour > numThree) && (1 == 1 || 1 == 2) // true 	7, 8
+
+// code end
+
+Yep eight.
+
+So that is pretty standard. 
+
+Now if statements. Man this is tiring, but I am going to power through! If statements in swift are pretty standard, if (*boolean statement*) { code } else if (*boolean statement*) { other_code } else { other_other_code }. Easiest sentence to read ever! Here is an example.
+
+// code 
+swift
+
+import UIKit 				// a bunch of code written by some people at Apple
+
+var num = 0
+
+if (num > 0) {
+	num = 1
+} else if (num == 0) {
+	num = 9
+} else {
+	num = 8
+}
+
+// code end
+
+That seems familiar to me. This will check the boolean comparators in the if statements and if it comes to a true statement it will run the section of code within the curly brackets. The above code will turn set the num variable to nine because if the (num == 0) is a true statement.  
+
+Ok I think I am going to say that that is the end of part one. I have a date! 
+
+
