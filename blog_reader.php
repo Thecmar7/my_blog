@@ -25,6 +25,7 @@
 	$links = array(
 			"Home" => "http://web.engr.oregonstate.edu/~smithcr/php/home.php",
 			"Blog" => "http://web.engr.oregonstate.edu/~smithcr/new_web/blog_reader.php",
+			"Projects" => "http://web.engr.oregonstate.edu/~smithcr/php/projects.php",
 			"New Post" => "http://web.engr.oregonstate.edu/~smithcr/new_web/Blog_writer.php"
 			);
 
